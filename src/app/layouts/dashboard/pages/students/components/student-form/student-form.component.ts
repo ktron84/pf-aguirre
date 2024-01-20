@@ -17,6 +17,7 @@ export class StudentFormComponent {
       firstName: this.fb.control('', Validators.required),
       lastName: this.fb.control('', Validators.required),
       birthDate: this.fb.control('', Validators.required),
+      course: this.fb.control('', Validators.required),
       email: this.fb.control('', Validators.required),
       country: this.fb.control('', Validators.required),
     })

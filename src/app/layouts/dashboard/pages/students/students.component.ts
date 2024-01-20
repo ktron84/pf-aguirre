@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { student } from './models/index';
+import { FullNamePipe } from '../../../../shared/full-name.pipe';
 
 @Component({
   selector: 'app-students',
@@ -9,7 +10,7 @@ import { student } from './models/index';
 
 export class StudentsComponent {  
   
-  displayedColumns: string[] = ['uuid','fullName', 'age', 'email', 'country'];
+  displayedColumns: string[] = ['uuid','fullName', 'age', 'email', 'course', 'country', 'action'];
   dataSource: student[] =[
     {
       uuid: "be46de05-274e-4313-a79a-7ecbac11bbad",
@@ -17,6 +18,7 @@ export class StudentsComponent {
       lastName: 'Aguirre',
       birthDate: '01/07/1984',
       email: 'ktron@outlook.com',
+      course: 'Angular',
       country: 'Colombia',
       countryPhoto: 'https://flagdownload.com/wp-content/uploads/Flag_of_Colombia-64x43.png'
     },
@@ -26,6 +28,7 @@ export class StudentsComponent {
       lastName: 'Aguirre',
       birthDate: '07/16/2008',
       email: 'kidtron@gmail.com',
+      course: 'React',
       country: 'Argentina',
       countryPhoto: 'https://flagdownload.com/wp-content/uploads/Flag_of_Argentina-128x80.png'
     },
@@ -35,12 +38,20 @@ export class StudentsComponent {
       lastName: 'Durango',
       birthDate: '05/21/1988',
       email: 'isamarylond@gmail.com',
+      course: 'Astro',
       country: 'Brasil',
       countryPhoto: 'https://flagdownload.com/wp-content/uploads/Flag_of_Brazil-64x45.png'
     }
   ];
-
+  
   onStudentSubmitted(ev: student): void{
     this.dataSource = [...this.dataSource, {...ev, uuid: crypto.randomUUID()}]
+  }
+
+  onStudentDelete(student: student) {
+    const confirmDelete = confirm('¿Confirma que desea eliminar el estudiante: ' + student.firstName + ' ' +student.lastName  +' ?' );
+    if (confirmDelete) {
+      this.dataSource = this.dataSource.filter(u => u.uuid !== student.uuid);
+    }
   }
 }

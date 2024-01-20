@@ -4,6 +4,7 @@ export interface student{
     lastName: string;
     birthDate: string;
     email: string;
+    course: string;
     country: string;
     countryPhoto: string;
 }
