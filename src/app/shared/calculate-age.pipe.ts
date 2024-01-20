@@ -8,7 +8,7 @@ export class CalculateAgePipe implements PipeTransform {
 
   transform(value: student, ...args: unknown[]): unknown {
     
-    console.log("date:" + value);
+    //console.log("date:" + value);
 
     function calculateAge(dateString: string): number {
       const [month, day, year] = dateString.split('/');
@@ -25,7 +25,7 @@ export class CalculateAgePipe implements PipeTransform {
     }
 
     const fechaNacimiento = value.birthDate;
-    console.log("date:" + value.birthDate);
+    //console.log("date:" + value.birthDate);
     const edad = calculateAge(fechaNacimiento);
       
     return edad ;

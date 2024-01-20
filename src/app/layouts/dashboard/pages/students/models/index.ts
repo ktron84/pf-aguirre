@@ -1,9 +1,8 @@
 export interface student{
-    id: number;   
+    uuid: string;   
     firstName: string;
     lastName: string;
     birthDate: string;
-    studentPhoto: string; 
     email: string;
     country: string;
     countryPhoto: string;
