@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { student } from './models/index';
-import { FullNamePipe } from '../../../../shared/full-name.pipe';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-students',
@@ -43,6 +43,47 @@ export class StudentsComponent {
       countryPhoto: 'https://flagdownload.com/wp-content/uploads/Flag_of_Brazil-64x45.png'
     }
   ];
+
+  editingStudent: student | null = null;
+  studentForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.studentForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      birthDate: ['', Validators.required],
+      course: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      country: ['', Validators.required]
+    });
+  };
+
+  onStudentModify(student : student) {
+    this.editingStudent = student;
+    this.studentForm.setValue({
+      firstName: student.firstName,
+      lastName: student.lastName,
+      birthDate: student.birthDate,
+      course: student.course,
+      email: student.email,
+      country: student.country,
+    })
+  }
+
+  onCancelEdit() {
+    this.editingStudent = null;
+    this.studentForm.reset();
+  };
+
+  onSaveEdit() {
+    if (this.editingStudent && this.studentForm.valid) {
+      this.dataSource = this.dataSource.map(student => 
+        student.uuid === this.editingStudent!.uuid ? { ...this.editingStudent, ...this.studentForm.value } : student
+      )   
+      this.editingStudent = null;
+      this.studentForm.reset();
+    }
+   }
   
   onStudentSubmitted(ev: student): void{
     this.dataSource = [...this.dataSource, {...ev, uuid: crypto.randomUUID()}]
@@ -54,4 +95,9 @@ export class StudentsComponent {
       this.dataSource = this.dataSource.filter(u => u.uuid !== student.uuid);
     }
   }
-}
+};
+
+
+
+
+
