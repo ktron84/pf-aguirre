@@ -6,5 +6,4 @@ export interface student{
     email: string;
     course: string;
     country: string;
-    countryPhoto: string;
 }

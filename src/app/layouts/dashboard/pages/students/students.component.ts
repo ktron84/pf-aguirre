@@ -16,31 +16,28 @@ export class StudentsComponent {
       uuid: "be46de05-274e-4313-a79a-7ecbac11bbad",
       firstName: 'Carlos',
       lastName: 'Aguirre',
-      birthDate: '01/07/1984',
+      birthDate: '1984-01-07',
       email: 'ktron@outlook.com',
       course: 'Angular',
       country: 'Colombia',
-      countryPhoto: 'https://flagdownload.com/wp-content/uploads/Flag_of_Colombia-64x43.png'
     },
     {
       uuid: "31c32a47-1e39-4f9e-9105-a0aca00dde3c",
       firstName: 'Juan',
       lastName: 'Aguirre',
-      birthDate: '07/16/2008',
+      birthDate: '2008-07-16',
       email: 'kidtron@gmail.com',
       course: 'React',
       country: 'Argentina',
-      countryPhoto: 'https://flagdownload.com/wp-content/uploads/Flag_of_Argentina-128x80.png'
     },
     {
       uuid: "b5952229-3874-4b1b-a693-2a650ca738ef",
       firstName: 'Maria',
       lastName: 'Durango',
-      birthDate: '05/21/1988',
+      birthDate: '1988-05-21',
       email: 'isamarylond@gmail.com',
       course: 'Astro',
       country: 'Brasil',
-      countryPhoto: 'https://flagdownload.com/wp-content/uploads/Flag_of_Brazil-64x45.png'
     }
   ];
 

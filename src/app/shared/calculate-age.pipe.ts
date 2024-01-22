@@ -11,7 +11,7 @@ export class CalculateAgePipe implements PipeTransform {
     //console.log("date:" + value);
 
     function calculateAge(dateString: string): number {
-      const [month, day, year] = dateString.split('/');
+      const [year, month, day] = dateString.split('-');
       const birthDate = new Date(`${year}-${month}-${day}`);
       const today = new Date();
       const age = today.getFullYear() - birthDate.getFullYear();
