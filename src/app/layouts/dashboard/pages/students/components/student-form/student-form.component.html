@@ -1,40 +1,36 @@
-<form [formGroup]="StudentForm" (ngSubmit)="onSubmit()" class="grid formgrid">
+<form [formGroup]="studentsForm" (ngSubmit)="onSubmit()" class="grid formgrid">
   <div class="col-6">
-    <mat-form-field class="w-full">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>Nombre</mat-label>
       <input formControlName="firstName" matInput type="text" />
     </mat-form-field>
   </div>
   <div class="col-6">
-    <mat-form-field class="w-full">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>Apellido</mat-label>
       <input formControlName="lastName" matInput type="text" />
     </mat-form-field>
   </div>
   <div class="col-6">
-    <mat-form-field class="w-full">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>Fecha de Nacimiento</mat-label>
       <input formControlName="birthDate" matInput type="date" />
     </mat-form-field>
   </div>
   <div class="col-6">
-    <mat-form-field class="w-full">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>Email</mat-label>
       <input formControlName="email" matInput type="email" />
     </mat-form-field>
   </div>
   <div class="col-6">
-    <mat-form-field class="w-full">
-      <mat-label>Curso</mat-label>
-      <mat-select formControlName="course">
-        <mat-option value="Angular">Angular</mat-option>
-        <mat-option value="React">React</mat-option>
-        <mat-option value="Astro">Astro</mat-option>
-      </mat-select>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Movil</mat-label>
+      <input formControlName="cellPhone" matInput type="tel" />
     </mat-form-field>
   </div>
   <div class="col-6">
-    <mat-form-field class="w-full">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>Pais</mat-label>
       <mat-select formControlName="country">
         <mat-option value="Colombia">Colombia</mat-option>
@@ -43,8 +39,16 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="col-12 flex justify-content-start">
-    <button mat-flat-button color="primary">Guardar</button>
+  <div class="col-12 flex justify-content-end">
+    <button
+      mat-flat-button
+      color="warn"
+      (click)="onPressCancel(true)"
+      style="margin-right: 20px"
+    >
+      Cancelar
+    </button>
+    <button mat-flat-button color="primary">{{ botonAccion }}</button>
   </div>
 </form>
 

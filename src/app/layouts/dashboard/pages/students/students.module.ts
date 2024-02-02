@@ -10,6 +10,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import { StudentsService } from '../../../../core/services/students.service';
 
 
 @NgModule({
@@ -30,6 +31,14 @@ import {MatIconModule} from '@angular/material/icon';
   ],
   exports:[
     StudentsComponent,
-  ]
+  ],
+  providers:[StudentsService,
+    {
+      provide:'USER_TOKEN',
+      useValue: 'fdofjdsfgdsiweopgjdvjdklfjdslkfdkfjdkl',
+    },
+  
+  
+  ],
 })
 export class StudentsModule { }

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output,OnChanges } from '@angular/core';
 import { student } from './models/index';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { StudentsService } from '../../../../core/services/students.service';
 
 @Component({
   selector: 'app-students',
@@ -9,89 +10,110 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 export class StudentsComponent {  
+
+  passEdit: any; 
+  mostrar=false;
+  studentAdd: student | undefined;
+  boton: any;  
   
-  displayedColumns: string[] = ['uuid','fullName', 'age', 'email', 'course', 'country', 'action'];
+  displayedColumns: string[] = ['id','fullName', 'age', 'email', 'cellPhone', 'country', 'action'];
   dataSource: student[] =[
     {
-      uuid: "be46de05-274e-4313-a79a-7ecbac11bbad",
+      id: "be46de05-274e-4313-a79a-7ecbac11bbad",
       firstName: 'Carlos',
       lastName: 'Aguirre',
       birthDate: '1984-01-07',
       email: 'ceaguirre@gmail.com',
-      course: 'Angular',
+      cellPhone: '3001238596',
       country: 'Colombia',
     },
     {
-      uuid: "31c32a47-1e39-4f9e-9105-a0aca00dde3c",
+      id: "31c32a47-1e39-4f9e-9105-a0aca00dde3c",
       firstName: 'Juan',
       lastName: 'Aguirre',
       birthDate: '2008-07-16',
       email: 'jjaguirre@gmail.com',
-      course: 'React',
+      cellPhone: '3001238596',
       country: 'Argentina',
     },
     {
-      uuid: "b5952229-3874-4b1b-a693-2a650ca738ef",
+      id: "b5952229-3874-4b1b-a693-2a650ca738ef",
       firstName: 'Maria',
       lastName: 'Durango',
       birthDate: '1988-05-21',
       email: 'midurango@gmail.com',
-      course: 'Astro',
+      cellPhone: '3001238596',
       country: 'Brasil',
     }
   ];
 
-  editingStudent: student | null = null;
-  studentForm: FormGroup;
+  constructor(private _snackBar: MatSnackBar, private studentsService: StudentsService) {}
 
-  constructor(private fb: FormBuilder) {
-    this.studentForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      course: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      country: ['', Validators.required]
-    });
-  };
-
-  onStudentModify(student : student) {
-    this.editingStudent = student;
-    this.studentForm.setValue({
-      firstName: student.firstName,
-      lastName: student.lastName,
-      birthDate: student.birthDate,
-      course: student.course,
-      email: student.email,
-      country: student.country,
-    })
-  }
-
-  onCancelEdit() {
-    this.editingStudent = null;
-    this.studentForm.reset();
-  };
-
-  onSaveEdit() {
-    if (this.editingStudent && this.studentForm.valid) {
-      this.dataSource = this.dataSource.map(student => 
-        student.uuid === this.editingStudent!.uuid ? { ...this.editingStudent, ...this.studentForm.value } : student
-      )   
-      this.editingStudent = null;
-      this.studentForm.reset();
-    }
-   }
-  
   onStudentSubmitted(ev: student): void{
-    this.dataSource = [...this.dataSource, {...ev, uuid: crypto.randomUUID()}]
-  }
-
-  onStudentDelete(student: student) {
-    const confirmDelete = confirm('¿Confirma que desea eliminar el estudiante: ' + student.firstName + ' ' +student.lastName  +' ?' );
-    if (confirmDelete) {
-      this.dataSource = this.dataSource.filter(u => u.uuid !== student.uuid);
+    if(ev.id===undefined){
+      this.dataSource = [...this.dataSource, {...ev, 
+        id: crypto.randomUUID()}];
+        this.mostrar=false;
+    }else{
+      this.dataSource = this.updateStudent(ev);
+      this.updateList();
+      this.mostrar=false;
     }
   }
+
+  onPressStudentAdd(){
+    this.mostrar=true;
+    this.passEdit=this.studentAdd;
+    this.boton="Agregar";
+  }
+
+  updateList() {
+    console.log("UPDATELIST")
+    this.dataSource = [...this.getAllStudents()]
+    
+  }
+
+  getAllStudents() {
+    return this.dataSource
+  }
+
+  deleteStudent(id: number): student[] {
+    console.log(this.dataSource)
+    const dataSourceFiltered = this.dataSource.filter(el   => el.id != id.toString());
+    this.dataSource = [...dataSourceFiltered];
+    return this.dataSource
+  }
+
+  onStudentDelete(id: number): void {
+    this.deleteStudent(id);
+    this.updateList()
+    this.mostrarAlerta("Alumno fue eliminado con exito","Bien!");
+  }
+
+  updateStudent(students: student) {
+    const index = this.dataSource.findIndex(el => el.id == students.id)     
+    this.dataSource[index] = students;      
+    return this.dataSource
+  }
+
+  onPressStudentEdit(students:student) {
+    this.passEdit = students;
+    this.mostrar=true;      
+    this.boton = 'Actualizar';      
+  }
+
+  recibirCancelar(can:boolean): void{    
+    this.mostrar=false;
+  }
+
+  mostrarAlerta(msg: string, accion: string) {
+    this._snackBar.open(msg, accion,{
+      horizontalPosition:"center",
+      verticalPosition:"top",
+      duration: 3000
+    });
+  }
+ 
 };
 
 
