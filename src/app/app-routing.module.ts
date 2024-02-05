@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'auth/login'
+    redirectTo: '/dashboard/home', //temporal mientras implemento el login 👍.  
   },
 ];
 

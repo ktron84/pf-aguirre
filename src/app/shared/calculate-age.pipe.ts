@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { student } from '../layouts/dashboard/pages/students/models';
+import { Student } from '../layouts/dashboard/pages/students/models';
 
 @Pipe({
   name: 'calculateAge'
 })
 export class CalculateAgePipe implements PipeTransform {
 
-  transform(value: student, ...args: unknown[]): unknown {
+  transform(value: Student, ...args: unknown[]): unknown {
     
     //console.log("date:" + value);
 
