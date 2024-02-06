@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { StudentsComponent } from './pages/students/students.component';
 import {MatListModule} from '@angular/material/list';
+import { CoursesModule } from './pages/courses/courses.module';
+import { CoursesComponent } from './pages/courses/courses.component';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import {MatListModule} from '@angular/material/list';
     MatIconModule,
     StudentsModule,
     MatListModule,
+    CoursesModule,
     RouterModule.forChild([
       {
         path: 'home',
@@ -32,7 +35,12 @@ import {MatListModule} from '@angular/material/list';
       {
         path: 'students',
         component: StudentsComponent,
-      },{
+      },
+      {
+        path: 'courses',
+        loadChildren: () => import('./pages/courses/courses.module').then(m => m.CoursesModule)
+      },
+      {
         path: '**',
         redirectTo: 'home',
         pathMatch: 'full'

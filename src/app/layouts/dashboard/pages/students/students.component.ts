@@ -20,8 +20,6 @@ export class StudentsComponent implements OnInit {
   displayedColumns: string[] = ['id','fullName', 'age', 'email', 'cellPhone', 'country', 'action'];
   dataSource: Student[] =[];
 
-
-
   constructor(private _snackBar: MatSnackBar, private studentsService: StudentsService, private LoadingService: LoadingService) {}
 
   ngOnInit(): void {
