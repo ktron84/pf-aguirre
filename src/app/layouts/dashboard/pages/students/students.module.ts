@@ -7,9 +7,7 @@ import { StudentFormComponent } from './components/student-form/student-form.com
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatIconModule} from '@angular/material/icon';
 import { StudentsService } from '../../../../core/services/students.service';
 
 
@@ -25,9 +23,8 @@ import { StudentsService } from '../../../../core/services/students.service';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule,
     ReactiveFormsModule,
-    MatIconModule,
+
   ],
   exports:[
     StudentsComponent,

@@ -10,36 +10,38 @@ import { Course } from './models/index';
   styleUrl: './courses.component.scss'
 })
 
-export class CoursesComponent implements OnInit{
+export class CoursesComponent {
   displayedColumns: string[] = ['id', 'courseName', 'description', 'startDate', 'endDate', 'actions'];
-  dataSource: Course[] = [];
 
-  constructor(private _snackBar:MatSnackBar, private courseService: CoursesService, private LoadingService: LoadingService ) {}
+  courses: Course[] = [];
 
-  ngOnInit(): void {
+  constructor(private _snackBar:MatSnackBar, 
+    private courseService: CoursesService, 
+    private LoadingService: LoadingService 
+  ) {
     this.LoadingService.setIsLoading(true);
     this.courseService.getCourses().subscribe({
       next: (courses) => {
-        this.dataSource = courses;
+        this.courses = courses;
       },
       complete: () => {
         this.LoadingService.setIsLoading(false);
-      }
-    });
+      },
+    });    
   }
-
-  onDeleteCourse(id: number){
+  
+  onDeleteCourse(id: number) {
     this.LoadingService.setIsLoading(true);
     this.courseService.deleteCourseById(id).subscribe({
-      next: () => {
-        this.dataSource = this.dataSource.filter((el) => el.id !== id);
-        this._snackBar.open('Curso eliminado', 'Cerrar', {
-          duration: 1000,
+      next: (courses) => {
+        this.courses = courses;
+        this._snackBar.open('Curso eliminado correctamente', 'cerrar', {
+          duration: 2000,
         });
       },
       complete: () => {
         this.LoadingService.setIsLoading(false);
-      }
+      },
     });
   }
 }

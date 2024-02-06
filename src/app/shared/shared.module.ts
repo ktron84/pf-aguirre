@@ -5,6 +5,7 @@ import { CalculateAgePipe } from './calculate-age.pipe';
 import { UpperCaseDirective } from './upper-case.directive';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -18,7 +19,7 @@ import {MatIconModule} from '@angular/material/icon';
     CommonModule
   ],
   exports: [
-    FullNamePipe,CalculateAgePipe,UpperCaseDirective,MatTableModule,MatIconModule
+    FullNamePipe,CalculateAgePipe,UpperCaseDirective,MatTableModule,MatIconModule,MatButtonModule
   ]
 })
 export class SharedModule { }

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { delay, of } from "rxjs";
 import { Course } from "../../layouts/dashboard/pages/courses/models";
 
-let COURSES_DB: Course[] = [
+let courses: Course[] = [
   {
     id: 1,
     courseName: 'Angular',
@@ -32,12 +32,12 @@ let COURSES_DB: Course[] = [
 export class CoursesService {
 
    getCourses() {
-     return of (COURSES_DB).pipe(delay(2000));
+     return of (courses).pipe(delay(1200));
    }
 
 
    deleteCourseById(id: number){
-      COURSES_DB = COURSES_DB.filter((el)=> el.id !== id);
-      return of(true).pipe(delay(1000));
+      courses = courses.filter((el)=> el.id !== id);
+      return this.getCourses();
    }
 }
