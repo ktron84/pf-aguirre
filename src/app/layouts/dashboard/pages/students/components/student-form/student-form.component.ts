@@ -45,6 +45,7 @@ export class StudentFormComponent implements OnChanges{
       })
     }else{
       this.studentsForm = this.fb.group({
+        id : this.fb.control(this.passEdit.id),
         firstName: this.fb.control(this.passEdit.firstName, Validators.required),
         lastName: this.fb.control(this.passEdit.lastName, Validators.required),
         birthDate: this.fb.control(this.passEdit.birthDate, Validators.required),

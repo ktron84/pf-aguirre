@@ -36,8 +36,10 @@ export class StudentsComponent implements OnInit {
 
   onStudentSubmitted(ev: Student): void{
     if(ev.id===undefined){
+      console.log(ev.id);
       this.dataSource = [...this.dataSource, {...ev, 
-        id: crypto.randomUUID()}];
+        id:  Math.floor(Math.random() * 900) + 100
+      }];
         this.mostrar=false;
     }else{
       this.dataSource = this.updateStudent(ev);
@@ -64,7 +66,7 @@ export class StudentsComponent implements OnInit {
 
   deleteStudent(id: number): Student[] {
     console.log(this.dataSource)
-    const dataSourceFiltered = this.dataSource.filter(el   => el.id != id.toString());
+    const dataSourceFiltered = this.dataSource.filter(el   => el.id != id);
     this.dataSource = [...dataSourceFiltered];
     return this.dataSource
   }
@@ -82,6 +84,7 @@ export class StudentsComponent implements OnInit {
   }
 
   onPressStudentEdit(students:Student) {
+    console.log(JSON.stringify(students));
     this.passEdit = students;
     this.mostrar=true;      
     this.boton = 'Actualizar';      
