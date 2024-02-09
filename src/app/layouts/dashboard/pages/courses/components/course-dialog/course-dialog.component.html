@@ -1,0 +1,41 @@
+<h1 mat-dialog-title style="margin-bottom: 10px">Cursos</h1>
+<div mat-dialog-content>
+  <form [formGroup]="courseForm" class="grid formgrid">
+    <div class="col-6" style="margin-top: 10px">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input formControlName="courseName" matInput />
+      </mat-form-field>
+    </div>
+    <div class="col-6" style="margin-top: 10px">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Descripción</mat-label>
+        <input formControlName="description" matInput />
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Fecha Inicio</mat-label>
+        <input formControlName="startDate" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Fecha Fin</mat-label>
+        <input formControlName="endDate" matInput [matDatepicker]="picker2" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <pre>{{ courseForm.value | json }}</pre>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button (click)="onSaveCourse()" mat-button>Guardar</button>
+  <button (click)="onSaveCourse()" mat-button>Cancelar</button>
+</div>

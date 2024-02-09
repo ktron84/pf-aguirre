@@ -7,22 +7,22 @@ let courses: Course[] = [
     id: 1,
     courseName: 'Angular',
     description: 'Curso de Angular 17',
-    startDate: '2024-01-31',
-    endDate: '2024-12-31'
+    startDate: new Date(),
+    endDate: new Date(), 
   },
   {
     id: 2,
     courseName: 'React',
     description: 'Curso de React 18',
-    startDate: '2024-01-31',
-    endDate: '2024-12-31'
+    startDate: new Date(),
+    endDate: new Date()
   },
   {
     id: 3,
     courseName: 'Vue',
     description: 'Curso de Vue 3',
-    startDate: '2024-01-31',
-    endDate: '2024-12-31'
+    startDate: new Date(),
+    endDate: new Date()
   },
 ];
 
@@ -32,7 +32,13 @@ let courses: Course[] = [
 export class CoursesService {
 
    getCourses() {
-     return of (courses).pipe(delay(1200));
+     return of (courses).pipe(delay(400));
+   }
+
+   createCourse(data: Course){
+      courses = [...courses, { ...data, id: courses.length + 1, }];
+      return this.getCourses();
+
    }
 
 
@@ -40,4 +46,9 @@ export class CoursesService {
       courses = courses.filter((el)=> el.id !== id);
       return this.getCourses();
    }
+
+   updateCourseById(id: number, data: Course) {
+    courses = courses.map((el) => el.id === id ? { ...el, ...data } : el);
+    return this.getCourses();
+  }   
 }

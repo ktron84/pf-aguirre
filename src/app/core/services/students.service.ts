@@ -43,6 +43,6 @@ export class StudentsService {
   }
 
   gestStudents() {
-    return of (STUDENTS_DB).pipe(delay(2000));
+    return of (STUDENTS_DB).pipe(delay(400));
   }
 }

@@ -64,18 +64,18 @@ export class StudentFormComponent implements OnChanges{
     if(this.botonPresionar==true){
       this.cancel.emit(this.botonPresionar);
       this.studentsForm.reset();
-      this.showAlert("Atención","Se cancelo la operacion");
+      this.showAlert("Se cancelo la operacion","cerrar");
     }else{
       if(this.studentsForm.invalid){
         this.studentsForm.markAllAsTouched();
       }else if(this.studentsForm.value.id == '0'){
         this.studentSubmitted.emit(this.studentsForm.value);        
         this.studentsForm.reset();
-        this.showAlert("Atención","Se agrego el estudiante");
+        this.showAlert("Se agrego el estudiante","cerrar");
       }else{
         this.studentSubmitted.emit(this.studentsForm.value);
         this.studentsForm.reset();
-        this.showAlert("Atención","Se edito el estudiante");
+        this.showAlert("Se edito el estudiante","cerrar");
       }
     }
   }

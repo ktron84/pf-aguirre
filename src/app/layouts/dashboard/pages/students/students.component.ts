@@ -74,7 +74,7 @@ export class StudentsComponent implements OnInit {
   onStudentDelete(id: number): void {
     this.deleteStudent(id);
     this.updateList()
-    this.mostrarAlerta("Alumno fue eliminado con exito","Bien!");
+    this.mostrarAlerta("Alumno fue eliminado con exito","cerrar");
   }
 
   updateStudent(students: Student) {
