@@ -9,15 +9,14 @@ import { StudentsModule } from './pages/students/students.module';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { StudentsComponent } from './pages/students/students.component';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { CoursesModule } from './pages/courses/courses.module';
 import { CoursesComponent } from './pages/courses/courses.component';
-
+import { UsersComponent } from './pages/users/users.component';
+import { UsersModule } from './pages/users/users.module';
 
 @NgModule({
-  declarations: [
-    DashboardComponent
-  ],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -27,6 +26,7 @@ import { CoursesComponent } from './pages/courses/courses.component';
     StudentsModule,
     MatListModule,
     CoursesModule,
+    UsersModule,
     RouterModule.forChild([
       {
         path: 'home',
@@ -37,18 +37,21 @@ import { CoursesComponent } from './pages/courses/courses.component';
         component: StudentsComponent,
       },
       {
+        path: 'users',
+        component: UsersComponent,
+      },
+      {
         path: 'courses',
-        loadChildren: () => import('./pages/courses/courses.module').then(m => m.CoursesModule)
+        loadChildren: () =>
+          import('./pages/courses/courses.module').then((m) => m.CoursesModule),
       },
       {
         path: '**',
         redirectTo: 'home',
-        pathMatch: 'full'
-      }
-    ])
+        pathMatch: 'full',
+      },
+    ]),
   ],
-  exports:[
-    DashboardComponent
-  ]
+  exports: [DashboardComponent],
 })
-export class DashboardModule { }
+export class DashboardModule {}
