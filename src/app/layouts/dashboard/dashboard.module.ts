@@ -34,11 +34,15 @@ import { UsersModule } from './pages/users/users.module';
       },
       {
         path: 'students',
-        component: StudentsComponent,
+        loadChildren: () =>
+          import('./pages/students/students.module').then(
+            (m) => m.StudentsModule
+          ),
       },
       {
         path: 'users',
-        component: UsersComponent,
+        loadChildren: () =>
+          import('./pages/users/users.module').then((m) => m.UsersModule),
       },
       {
         path: 'courses',

@@ -6,14 +6,17 @@ import { NotFoundComponent } from './layouts/not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard', 
+    path: 'dashboard',
     component: DashboardComponent,
-    loadChildren: () => import('./layouts/dashboard/dashboard.module').then(
-      m => m.DashboardModule),
+    loadChildren: () =>
+      import('./layouts/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
   },
   {
-    path: 'auth/login',
-    component:LoginComponent,
+    path: 'auth',
+    loadChildren: () =>
+      import('./layouts/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '404',
@@ -21,12 +24,12 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/dashboard/home', //temporal mientras implemento el login 👍.  
+    redirectTo: '/dashboard/home', //temporal mientras implemento el login 👍.
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
