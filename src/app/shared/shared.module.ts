@@ -13,10 +13,17 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { ValidationErrorsPipe } from './validation-errors.pipe'; // Import MatCardModule
 
 @NgModule({
-  declarations: [FullNamePipe, CalculateAgePipe, UpperCaseDirective],
-  imports: [CommonModule],
+  declarations: [
+    FullNamePipe,
+    CalculateAgePipe,
+    UpperCaseDirective,
+    ValidationErrorsPipe,
+  ],
+  imports: [CommonModule, MatCardModule], // Add MatCardModule to imports array
   exports: [
     FullNamePipe,
     CalculateAgePipe,
@@ -31,6 +38,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatNativeDateModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatCardModule,
+    ValidationErrorsPipe,
   ],
 })
 export class SharedModule {}
