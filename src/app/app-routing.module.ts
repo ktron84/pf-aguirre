@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 import { LoginComponent } from './layouts/auth/pages/login/login.component';
 import { NotFoundComponent } from './layouts/not-found/not-found.component';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
+    canActivate: [authGuard],
     component: DashboardComponent,
     loadChildren: () =>
       import('./layouts/dashboard/dashboard.module').then(
@@ -24,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/dashboard/home', //temporal mientras implemento el login 👍.
+    redirectTo: '404',
   },
 ];
 
