@@ -38,6 +38,11 @@ export class UsersComponent {
       complete: () => {
         this.loadingService.setIsLoading(false);
       },
+      error: () => {
+        this._snackBar.open('Error al cargar los usuarios', 'cerrar', {
+          duration: 2000,
+        });
+      },
     });
   }
 

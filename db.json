@@ -1,0 +1,49 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "doe",
+      "email": "johndoe@gmail.com",
+      "cellPhone": "123456789",
+      "password": "123456",
+      "role": "Administrador"
+    },
+    {
+      "id": "2",
+      "firstName": "Jane",
+      "lastName": "doe",
+      "email": "janedoe@gmail.com",
+      "cellPhone": "123456789",
+      "password": "123456",
+      "role": "Usuario"
+    },
+    {
+      "id": "b56c",
+      "firstName": "Carlos",
+      "lastName": "Aguirre",
+      "email": "admin@gmail.com",
+      "cellPhone": "123456789",
+      "password": "123456",
+      "role": "Administrador"
+    },
+    {
+      "id": "695c",
+      "firstName": "doctro",
+      "lastName": "skdladjskld",
+      "email": "aadasda@dfdjkljdf",
+      "cellPhone": "5456456415312531",
+      "password": "123456",
+      "role": "user"
+    },
+    {
+      "id": "6574",
+      "firstName": "asdhjasdk",
+      "lastName": "sjkasdhskjdh",
+      "email": "jkdhskjdha@jdkhsdkj",
+      "cellPhone": "315648645153",
+      "password": "hdjkhdjskdhask",
+      "role": "user"
+    }
+  ]
+}
