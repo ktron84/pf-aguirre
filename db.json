@@ -7,7 +7,8 @@
       "email": "janedoe@gmail.com",
       "cellPhone": "123456789",
       "password": "123456",
-      "role": "Usuario"
+      "role": "user",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImphbmVkb2VAZ21haWwuY29tIiwiaWF0IjoxNTE2MjM5MDIyfQ.QxzKqQybPwkrwFUGApRWCM0q--1Cz2D9S_aOq3ciOBY"
     },
     {
       "firstName": "Carlos E",
@@ -15,8 +16,9 @@
       "email": "admin@gmail.com",
       "cellPhone": "123456789",
       "password": "123456",
-      "role": "user",
-      "id": "b56c"
+      "role": "admin",
+      "id": "b56c",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImFkbWluQGdtYWlsLmNvbSIsImlhdCI6MTUxNjIzOTAyMn0.Nu-OqPCfyffymjos88oH0FyiFHWgzgHYpN_7DJ9Jzxo"
     },
     {
       "id": "f09c",
@@ -25,7 +27,8 @@
       "email": "carlos@emtelco.co",
       "cellPhone": "32095274418",
       "password": "123456",
-      "role": "admin"
+      "role": "user",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImNhcmxvc0BlbXRlbGNvLmNvIiwiaWF0IjoxNTE2MjM5MDIyfQ.mPKMf5Y-JGNcJTpBRPMlFSl8ek_oLYWjUdlrFC10V4k"
     }
   ],
   "students": [

@@ -6,4 +6,5 @@ export interface User {
   cellPhone: string;
   password: string;
   role: string;
+  token: string;
 }
