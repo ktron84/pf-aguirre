@@ -100,6 +100,11 @@ export class UsersComponent {
           duration: 2000,
         });
       },
+      error: () => {
+        this._snackBar.open('Error al eliminar el usuario', 'cerrar', {
+          duration: 2000,
+        });
+      },
     });
   }
 }

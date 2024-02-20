@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  OnChanges,
-  OnInit,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CoursesService } from '../../../../core/services/courses.service';
 import { LoadingService } from '../../../../core/services/loading.service';
@@ -42,6 +35,11 @@ export class CoursesComponent {
       },
       complete: () => {
         this.LoadingService.setIsLoading(false);
+      },
+      error: () => {
+        this._snackBar.open('Error al cargar los cursos', 'cerrar', {
+          duration: 2000,
+        });
       },
     });
   }
@@ -97,6 +95,11 @@ export class CoursesComponent {
       next: (courses) => {
         this.courses = courses;
         this._snackBar.open('Curso eliminado correctamente', 'cerrar', {
+          duration: 2000,
+        });
+      },
+      error: () => {
+        this._snackBar.open('Error al eliminar el curso', 'cerrar', {
           duration: 2000,
         });
       },

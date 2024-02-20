@@ -1,15 +1,6 @@
 {
   "users": [
     {
-      "id": "1",
-      "firstName": "John",
-      "lastName": "doe",
-      "email": "johndoe@gmail.com",
-      "cellPhone": "123456789",
-      "password": "123456",
-      "role": "Administrador"
-    },
-    {
       "id": "2",
       "firstName": "Jane",
       "lastName": "doe",
@@ -19,31 +10,81 @@
       "role": "Usuario"
     },
     {
-      "id": "b56c",
-      "firstName": "Carlos",
+      "firstName": "Carlos E",
       "lastName": "Aguirre",
       "email": "admin@gmail.com",
       "cellPhone": "123456789",
       "password": "123456",
-      "role": "Administrador"
+      "role": "user",
+      "id": "b56c"
     },
     {
-      "id": "695c",
-      "firstName": "doctro",
-      "lastName": "skdladjskld",
-      "email": "aadasda@dfdjkljdf",
-      "cellPhone": "5456456415312531",
+      "id": "f09c",
+      "firstName": "Doctor",
+      "lastName": "Krapula",
+      "email": "carlos@emtelco.co",
+      "cellPhone": "32095274418",
       "password": "123456",
-      "role": "user"
+      "role": "admin"
+    }
+  ],
+  "students": [
+    {
+      "id": "123",
+      "firstName": "Carlos",
+      "lastName": "Aguirre",
+      "birthDate": "1984-01-07",
+      "email": "ceaguirre@gmail.com",
+      "cellPhone": "3001238596",
+      "country": "Colombia"
     },
     {
-      "id": "6574",
-      "firstName": "asdhjasdk",
-      "lastName": "sjkasdhskjdh",
-      "email": "jkdhskjdha@jdkhsdkj",
-      "cellPhone": "315648645153",
-      "password": "hdjkhdjskdhask",
-      "role": "user"
+      "id": "456",
+      "firstName": "Juan",
+      "lastName": "Aguirre",
+      "birthDate": "2008-07-16",
+      "email": "jjaguirre@gmail.com",
+      "cellPhone": "3001238596",
+      "country": "Argentina"
+    },
+    {
+      "id": "789",
+      "firstName": "Maria",
+      "lastName": "Durango",
+      "birthDate": "1988-05-21",
+      "email": "midurango@gmail.com",
+      "cellPhone": "3001238596",
+      "country": "Brasil"
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "courseName": "Angular",
+      "description": "Curso de Angular 17",
+      "startDate": "2022-01-01T00:00:00.000Z",
+      "endDate": "2022-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "courseName": "React",
+      "description": "Curso de React 18",
+      "startDate": "2022-01-01T00:00:00.000Z",
+      "endDate": "2022-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "courseName": "Vue",
+      "description": "Curso de Vue 3",
+      "startDate": "2022-01-01T00:00:00.000Z",
+      "endDate": "2022-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "cc27",
+      "courseName": "Astro",
+      "description": "curso de astro",
+      "startDate": "2024-02-21T05:00:00.000Z",
+      "endDate": "2024-02-17T05:00:00.000Z"
     }
   ]
 }

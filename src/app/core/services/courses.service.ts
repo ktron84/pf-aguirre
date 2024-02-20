@@ -1,56 +1,42 @@
 import { Injectable } from '@angular/core';
-import { delay, finalize, of } from 'rxjs';
+import { delay, finalize, mergeMap, of } from 'rxjs';
 import { Course } from '../../layouts/dashboard/pages/courses/models';
 import { LoadingService } from './loading.service';
-
-let courses: Course[] = [
-  {
-    id: 1,
-    courseName: 'Angular',
-    description: 'Curso de Angular 17',
-    startDate: new Date(),
-    endDate: new Date(),
-  },
-  {
-    id: 2,
-    courseName: 'React',
-    description: 'Curso de React 18',
-    startDate: new Date(),
-    endDate: new Date(),
-  },
-  {
-    id: 3,
-    courseName: 'Vue',
-    description: 'Curso de Vue 3',
-    startDate: new Date(),
-    endDate: new Date(),
-  },
-];
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable()
 export class CoursesService {
-  constructor(private loadingService: LoadingService) {}
+  constructor(
+    private loadingService: LoadingService,
+    private httpClient: HttpClient
+  ) {}
 
   getCourses() {
     this.loadingService.setIsLoading(true);
-    return of(courses).pipe(
-      delay(400),
-      finalize(() => this.loadingService.setIsLoading(false))
-    );
+    return this.httpClient
+      .get<Course[]>(`${environment.apiUrl}/courses`)
+      .pipe(finalize(() => this.loadingService.setIsLoading(false)));
   }
 
   createCourse(data: Course) {
-    courses = [...courses, { ...data, id: courses.length + 1 }];
-    return this.getCourses();
+    return this.httpClient
+      .post<Course>(`${environment.apiUrl}/courses`, data)
+      .pipe(mergeMap(() => this.getCourses()))
+      .pipe(finalize(() => this.loadingService.setIsLoading(false)));
   }
 
   deleteCourseById(id: number) {
-    courses = courses.filter((el) => el.id !== id);
-    return this.getCourses();
+    return this.httpClient
+      .delete<Course>(`${environment.apiUrl}/courses/${id}`)
+      .pipe(mergeMap(() => this.getCourses()))
+      .pipe(finalize(() => this.loadingService.setIsLoading(false)));
   }
 
   updateCourseById(id: number, data: Course) {
-    courses = courses.map((el) => (el.id === id ? { ...el, ...data } : el));
-    return this.getCourses();
+    return this.httpClient
+      .put<Course>(`${environment.apiUrl}/courses/${id}`, data)
+      .pipe(mergeMap(() => this.getCourses()))
+      .pipe(finalize(() => this.loadingService.setIsLoading(false)));
   }
 }

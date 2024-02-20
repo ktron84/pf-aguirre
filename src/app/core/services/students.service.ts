@@ -1,48 +1,42 @@
 import { Injectable, Inject } from '@angular/core';
 import { Student } from '../../layouts/dashboard/pages/students/models';
-import { delay, of } from 'rxjs';
+import { delay, finalize, merge, mergeMap, of } from 'rxjs';
+import { LoadingService } from './loading.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment.development';
 
-const STUDENTS_DB: Student[] = [ 
-  {
-    id: 123,
-    firstName: 'Carlos',
-    lastName: 'Aguirre',
-    birthDate: '1984-01-07',
-    email: 'ceaguirre@gmail.com',
-    cellPhone: '3001238596',
-    country: 'Colombia',
-  },
-  {
-    id: 456,
-    firstName: 'Juan',
-    lastName: 'Aguirre',
-    birthDate: '2008-07-16',
-    email: 'jjaguirre@gmail.com',
-    cellPhone: '3001238596',
-    country: 'Argentina',
-  },
-  {
-    id: 789,
-    firstName: 'Maria',
-    lastName: 'Durango',
-    birthDate: '1988-05-21',
-    email: 'midurango@gmail.com',
-    cellPhone: '3001238596',
-    country: 'Brasil',
-  },
-];
-
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class StudentsService {
+  constructor(
+    private loadingService: LoadingService,
+    private httpClient: HttpClient
+  ) {}
 
-  constructor(@Inject('USER_TOKEN') userToken: string) { 
-    console.log('El servicio ha sido instanciado', userToken);
+  getStudents() {
+    this.loadingService.setIsLoading(true);
+    return this.httpClient
+      .get<Student[]>(`${environment.apiUrl}/students`)
+      .pipe(finalize(() => this.loadingService.setIsLoading(false)));
   }
 
-  gestStudents() {
-    return of (STUDENTS_DB).pipe(delay(400));
+  createStudent(payload: Student) {
+    return this.httpClient
+      .post<Student>(`${environment.apiUrl}/students`, payload)
+      .pipe(mergeMap(() => this.getStudents()))
+      .pipe(finalize(() => this.loadingService.setIsLoading(false)));
+  }
+
+  deleteStudentById(id: number) {
+    return this.httpClient
+      .delete<Student>(`${environment.apiUrl}/students/${id}`)
+      .pipe(mergeMap(() => this.getStudents()))
+      .pipe(finalize(() => this.loadingService.setIsLoading(false)));
+  }
+
+  updateStudentById(id: number, data: Student) {
+    return this.httpClient
+      .put<Student>(`${environment.apiUrl}/students/${id}`, data)
+      .pipe(mergeMap(() => this.getStudents()))
+      .pipe(finalize(() => this.loadingService.setIsLoading(false)));
   }
 }

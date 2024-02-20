@@ -5,8 +5,6 @@ import { LoadingService } from './loading.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 
-//let users: User[] = [];
-
 @Injectable()
 export class UsersService {
   constructor(
@@ -17,27 +15,27 @@ export class UsersService {
   getUsers() {
     this.loadingService.setIsLoading(true);
     return this.httpClient
-      .get<User[]>(environment.apiUrl + '/users')
+      .get<User[]>(`${environment.apiUrl}/users`)
       .pipe(finalize(() => this.loadingService.setIsLoading(false)));
   }
 
-  createUser(data: User) {
+  createUser(payload: User) {
     return this.httpClient
-      .post<User>(environment.apiUrl + '/users', data)
+      .post<User>(`${environment.apiUrl}/users`, payload)
       .pipe(mergeMap(() => this.getUsers()))
       .pipe(finalize(() => this.loadingService.setIsLoading(false)));
   }
 
   deleteUsersById(id: number) {
     return this.httpClient
-      .delete<User>(environment.apiUrl + '/users/' + id)
+      .delete<User>(`${environment.apiUrl}/users/${id}`)
       .pipe(mergeMap(() => this.getUsers()))
       .pipe(finalize(() => this.loadingService.setIsLoading(false)));
   }
 
   updateUserById(id: number, data: User) {
     return this.httpClient
-      .put<User>(environment.apiUrl + '/users/' + id, data)
+      .put<User>(`${environment.apiUrl}/users/${id}`, data)
       .pipe(mergeMap(() => this.getUsers()))
       .pipe(finalize(() => this.loadingService.setIsLoading(false)));
   }
