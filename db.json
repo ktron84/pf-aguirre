@@ -29,6 +29,16 @@
       "password": "123456",
       "role": "user",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImNhcmxvc0BlbXRlbGNvLmNvIiwiaWF0IjoxNTE2MjM5MDIyfQ.mPKMf5Y-JGNcJTpBRPMlFSl8ek_oLYWjUdlrFC10V4k"
+    },
+    {
+      "id": "899d",
+      "firstName": "lina",
+      "lastName": "richard",
+      "email": "lina@rofkd",
+      "cellPhone": "1234578931",
+      "password": "123456789",
+      "role": "user",
+      "token": "c9b063de-d5b2-4d3b-9465-0a42722e6d1c"
     }
   ],
   "students": [

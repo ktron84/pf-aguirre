@@ -67,6 +67,9 @@ export class AuthService {
           } else {
             this.authUser = null;
             localStorage.removeItem('token');
+            this._snackBar.open('Usuario sin token', 'cerrar', {
+              duration: 2000,
+            });
             return false;
           }
         })
