@@ -27,19 +27,19 @@
     <!-- name Column -->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef>Nombre</th>
-      <td mat-cell *matCellDef="let student">{{ student.firsName }}</td>
+      <td mat-cell *matCellDef="let student">{{ student | fullName }}</td>
     </ng-container>
 
-    <!-- lastName Column -->
+    <!-- lastName Column 
     <ng-container matColumnDef="lastName">
       <th mat-header-cell *matHeaderCellDef>Apellido</th>
       <td mat-cell *matCellDef="let student">{{ student.lastName }}</td>
-    </ng-container>
+    </ng-container>-->
 
     <!-- age Column -->
-    <ng-container matColumnDef="birthDate">
-      <th mat-header-cell *matHeaderCellDef>Fecha de Nacimiento</th>
-      <td mat-cell *matCellDef="let student">{{ student.birthDate }}</td>
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef>Edad</th>
+      <td mat-cell *matCellDef="let student">{{ student | calculateAge }}</td>
     </ng-container>
 
     <!-- email Column -->

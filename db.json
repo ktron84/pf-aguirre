@@ -43,13 +43,13 @@
   ],
   "students": [
     {
-      "id": "123",
-      "firstName": "Carlos",
+      "firstName": "Carlos e",
       "lastName": "Aguirre",
       "birthDate": "1984-01-07",
       "email": "ceaguirre@gmail.com",
       "cellPhone": "3001238596",
-      "country": "Colombia"
+      "country": "Colombia",
+      "id": "123"
     },
     {
       "id": "456",
@@ -68,6 +68,15 @@
       "email": "midurango@gmail.com",
       "cellPhone": "3001238596",
       "country": "Brasil"
+    },
+    {
+      "firstName": "Nicolas",
+      "lastName": "Zapata",
+      "birthDate": "1985-01-01",
+      "email": "nico@pato.com",
+      "cellPhone": "3205874125",
+      "country": "Colombia",
+      "id": "c480"
     }
   ],
   "courses": [

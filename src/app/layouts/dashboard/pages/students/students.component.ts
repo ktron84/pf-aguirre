@@ -15,8 +15,7 @@ export class StudentsComponent {
   displayedColumns: string[] = [
     'id',
     'firstName',
-    'lastName',
-    'birthDate',
+    'age',
     'email',
     'cellPhone',
     'country',
