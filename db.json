@@ -108,5 +108,27 @@
       "startDate": "2024-02-21T05:00:00.000Z",
       "endDate": "2024-02-17T05:00:00.000Z"
     }
+  ],
+  "enrollments": [
+    {
+      "id": "1",
+      "studentId": "123",
+      "courseId": "1"
+    },
+    {
+      "id": "2",
+      "studentId": "456",
+      "courseId": "2"
+    },
+    {
+      "id": "3",
+      "studentId": "789",
+      "courseId": "3"
+    },
+    {
+      "id": "4",
+      "studentId": "c480",
+      "courseId": "cc27"
+    }
   ]
 }

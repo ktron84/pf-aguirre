@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../dashboard/pages/users/models';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { of, delay, map, finalize, tap } from 'rxjs';
+import { of, delay, map, finalize, tap, catchError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 
@@ -72,7 +72,8 @@ export class AuthService {
             });
             return false;
           }
-        })
+        }),
+        catchError(() => of(false))
       );
   }
 }
