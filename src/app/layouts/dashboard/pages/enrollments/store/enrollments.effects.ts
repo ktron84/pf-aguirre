@@ -11,9 +11,10 @@ export class EnrollmentsEffects {
     return this.actions$.pipe(
       ofType(EnrollmentsActions.loadEnrollments),
       concatMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        this.enrollmentService.getEnrollments().pipe(
+        this.enrollmentsService.getEnrollments().pipe(
+          //manejo de success
           map((data) => EnrollmentsActions.loadEnrollmentsSuccess({ data })),
+          //manejo de error
           catchError((error) =>
             of(EnrollmentsActions.loadEnrollmentsFailure({ error }))
           )
@@ -24,6 +25,6 @@ export class EnrollmentsEffects {
 
   constructor(
     private actions$: Actions,
-    private enrollmentService: EnrollmentsService
+    private enrollmentsService: EnrollmentsService
   ) {}
 }
