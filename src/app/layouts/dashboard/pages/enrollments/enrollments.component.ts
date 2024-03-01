@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { EnrollmentsService } from './enrollments.service';
 import { Store } from '@ngrx/store';
 import { EnrollmentsActions } from './store/enrollments.actions';
+import { Enrollment } from './models/index';
 
 @Component({
   selector: 'app-enrollments',
@@ -9,13 +10,19 @@ import { EnrollmentsActions } from './store/enrollments.actions';
   styleUrl: './enrollments.component.scss',
 })
 export class EnrollmentsComponent {
-  enrollments$: any;
+  //enrollments$: any;
+
+  displayedColumns: string[] = ['id', 'courseName', 'firstName', 'actions'];
+
+  enrollments: Enrollment[] = [];
 
   constructor(
     private enrollmentsService: EnrollmentsService,
     private store: Store
   ) {
-    this.enrollments$ = this.enrollmentsService.getEnrollments();
+    this.enrollmentsService.getEnrollments().subscribe((enrollments) => {
+      this.enrollments = enrollments;
+    });
 
     this.store.dispatch(EnrollmentsActions.loadEnrollments());
   }
