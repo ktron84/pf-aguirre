@@ -52,6 +52,13 @@ import { adminGuard } from '../../core/guards/admin.guard';
           import('./pages/courses/courses.module').then((m) => m.CoursesModule),
       },
       {
+        path: 'enrollments',
+        loadChildren: () =>
+          import('./pages/enrollments/enrollments.module').then(
+            (m) => m.EnrollmentsModule
+          ),
+      },
+      {
         path: '**',
         redirectTo: 'home',
         pathMatch: 'full',

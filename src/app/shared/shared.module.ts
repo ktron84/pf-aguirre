@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { ValidationErrorsPipe } from './validation-errors.pipe'; // Import MatCardModule
+import { FullNameEnrollmentPipe } from './full-name-enrollment.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ValidationErrorsPipe } from './validation-errors.pipe'; // Import MatCa
     CalculateAgePipe,
     UpperCaseDirective,
     ValidationErrorsPipe,
+    FullNameEnrollmentPipe,
   ],
   imports: [CommonModule, MatCardModule], // Add MatCardModule to imports array
   exports: [
@@ -40,6 +42,7 @@ import { ValidationErrorsPipe } from './validation-errors.pipe'; // Import MatCa
     MatSelectModule,
     MatCardModule,
     ValidationErrorsPipe,
+    FullNameEnrollmentPipe,
   ],
 })
 export class SharedModule {}
