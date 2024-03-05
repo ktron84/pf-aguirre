@@ -4,10 +4,12 @@ import { Store } from '@ngrx/store';
 import { EnrollmentsActions } from './store/enrollments.actions';
 import { Enrollment } from './models/index';
 import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import {
   selectEnrollments,
   selectEnrollmentsIsLoading,
 } from './store/enrollments.selectors';
+import { EnrollmentDialogComponent } from './components/enrollment-dialog/enrollment-dialog.component';
 
 @Component({
   selector: 'app-enrollments',
@@ -27,7 +29,7 @@ export class EnrollmentsComponent implements OnDestroy {
 
   desctoyed$ = new Subject();
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private MatDialog: MatDialog) {
     //this.enrollments$ = this.store.select(selectEnrollments);
 
     this.store
@@ -41,6 +43,10 @@ export class EnrollmentsComponent implements OnDestroy {
 
     this.isLoading$ = this.store.select(selectEnrollmentsIsLoading);
     this.store.dispatch(EnrollmentsActions.loadEnrollments());
+  }
+
+  createEnrollment(): void {
+    this.MatDialog.open(EnrollmentDialogComponent);
   }
 
   ngOnDestroy(): void {

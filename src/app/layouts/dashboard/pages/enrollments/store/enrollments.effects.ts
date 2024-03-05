@@ -4,6 +4,8 @@ import { catchError, map, concatMap } from 'rxjs/operators';
 import { Observable, EMPTY, of } from 'rxjs';
 import { EnrollmentsActions } from './enrollments.actions';
 import { EnrollmentsService } from '../enrollments.service';
+import { StudentsService } from '../../../../../core/services/students.service';
+import { CoursesService } from '../../../../../core/services/courses.service';
 
 @Injectable()
 export class EnrollmentsEffects {
@@ -23,8 +25,63 @@ export class EnrollmentsEffects {
     );
   });
 
+  loadStudents$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EnrollmentsActions.loadStudents),
+      concatMap(() =>
+        this.studentsService.getAllStudents().pipe(
+          map((resp) => EnrollmentsActions.loadStudentsSuccess({ data: resp })),
+          catchError((error) =>
+            of(EnrollmentsActions.loadStudentsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  loadCourses$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EnrollmentsActions.loadCourses),
+      concatMap(() =>
+        this.coursesService.getAllCourses().pipe(
+          map((response) =>
+            EnrollmentsActions.loadCoursesSuccess({ data: response })
+          ),
+          catchError((error) =>
+            of(EnrollmentsActions.loadCoursesFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  createEnrollment$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EnrollmentsActions.createEnrollment),
+      concatMap((action) =>
+        this.enrollmentsService.createEnrollment(action.data).pipe(
+          map((resp) =>
+            EnrollmentsActions.createEnrollmentSuccess({ data: resp })
+          ),
+          catchError((error) =>
+            of(EnrollmentsActions.createEnrollmentFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  createSaleSuccess$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EnrollmentsActions.createEnrollmentSuccess),
+      map(() => EnrollmentsActions.loadEnrollments())
+    );
+  });
+
   constructor(
     private actions$: Actions,
-    private enrollmentsService: EnrollmentsService
+    private enrollmentsService: EnrollmentsService,
+    private studentsService: StudentsService,
+    private coursesService: CoursesService
   ) {}
 }

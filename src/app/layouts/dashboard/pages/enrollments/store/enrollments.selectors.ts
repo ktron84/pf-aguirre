@@ -15,3 +15,13 @@ export const selectEnrollmentsIsLoading = createSelector(
   selectEnrollmentsState,
   (state) => state.loading
 );
+
+export const selectEnrollmentsStudents = createSelector(
+  selectEnrollmentsState,
+  (state) => state.students
+);
+
+export const selectEnrollmentsCourses = createSelector(
+  selectEnrollmentsState,
+  (state) => state.courses
+);

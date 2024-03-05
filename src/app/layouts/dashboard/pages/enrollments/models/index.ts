@@ -8,3 +8,8 @@ export interface Enrollment {
   student?: Student;
   course?: Course;
 }
+
+export interface CreateEnrollmentData {
+  studentId: string | number | null;
+  courseId: string | number | null;
+}

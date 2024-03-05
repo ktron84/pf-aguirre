@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, finalize, mergeMap, of } from 'rxjs';
+import { Observable, delay, finalize, mergeMap, of } from 'rxjs';
 import { Course } from '../../layouts/dashboard/pages/courses/models';
 import { LoadingService } from './loading.service';
 import { HttpClient } from '@angular/common/http';
@@ -13,6 +13,13 @@ export class CoursesService {
   ) {}
 
   getCourses() {
+    this.loadingService.setIsLoading(true);
+    return this.httpClient
+      .get<Course[]>(`${environment.apiUrl}/courses`)
+      .pipe(finalize(() => this.loadingService.setIsLoading(false)));
+  }
+
+  getAllCourses(): Observable<Course[]> {
     this.loadingService.setIsLoading(true);
     return this.httpClient
       .get<Course[]>(`${environment.apiUrl}/courses`)
