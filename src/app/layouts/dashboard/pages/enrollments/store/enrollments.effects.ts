@@ -71,9 +71,32 @@ export class EnrollmentsEffects {
     );
   });
 
-  createSaleSuccess$ = createEffect(() => {
+  createEnrollmentSuccess$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(EnrollmentsActions.createEnrollmentSuccess),
+      map(() => EnrollmentsActions.loadEnrollments())
+    );
+  });
+
+  deleteEnrollment$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EnrollmentsActions.deleteEnrollment),
+      concatMap((action) =>
+        this.enrollmentsService.deleteEnrollment(action.id).pipe(
+          map((resp) =>
+            EnrollmentsActions.deleteEnrollmentSuccess({ data: resp })
+          ),
+          catchError((error) =>
+            of(EnrollmentsActions.deleteEnrollmentFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  deleteEnrollmentSuccess$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EnrollmentsActions.deleteEnrollmentSuccess),
       map(() => EnrollmentsActions.loadEnrollments())
     );
   });

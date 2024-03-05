@@ -84,22 +84,22 @@
       "id": "1",
       "courseName": "Angular",
       "description": "Curso de Angular 17",
-      "startDate": "2022-01-01T00:00:00.000Z",
-      "endDate": "2022-01-01T00:00:00.000Z"
+      "startDate": "2024-01-01T00:00:00.000Z",
+      "endDate": "2024-01-01T00:00:00.000Z"
     },
     {
       "id": "2",
       "courseName": "React",
       "description": "Curso de React 18",
-      "startDate": "2022-01-01T00:00:00.000Z",
-      "endDate": "2022-01-01T00:00:00.000Z"
+      "startDate": "2024-01-01T00:00:00.000Z",
+      "endDate": "2024-01-01T00:00:00.000Z"
     },
     {
       "id": "3",
       "courseName": "Vue",
       "description": "Curso de Vue 3",
-      "startDate": "2022-01-01T00:00:00.000Z",
-      "endDate": "2022-01-01T00:00:00.000Z"
+      "startDate": "2024-01-01T00:00:00.000Z",
+      "endDate": "2024-01-01T00:00:00.000Z"
     },
     {
       "id": "cc27",
@@ -139,6 +139,16 @@
       "id": "3cb1",
       "courseId": "2",
       "studentId": "789"
+    },
+    {
+      "id": "7d51",
+      "courseId": "1",
+      "studentId": "789"
+    },
+    {
+      "id": "2fc2",
+      "courseId": "cc27",
+      "studentId": "123"
     }
   ]
 }

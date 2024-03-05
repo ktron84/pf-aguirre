@@ -21,7 +21,9 @@ export class EnrollmentsService {
     );
   }
 
-  deleteEnrollment(id: number) {
-    return this.http.delete(`${environment.apiUrl}/enrollments/${id}`);
+  deleteEnrollment(id: string) {
+    return this.http.delete<Enrollment>(
+      `${environment.apiUrl}/enrollments/${id}`
+    );
   }
 }

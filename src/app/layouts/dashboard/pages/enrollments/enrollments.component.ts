@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { EnrollmentsService } from './enrollments.service';
-import { Store } from '@ngrx/store';
+import { Store, on } from '@ngrx/store';
 import { EnrollmentsActions } from './store/enrollments.actions';
 import { Enrollment } from './models/index';
 import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
@@ -19,7 +19,15 @@ import { EnrollmentDialogComponent } from './components/enrollment-dialog/enroll
 export class EnrollmentsComponent implements OnDestroy {
   //enrollments$: Observable<Enrollment[]>;
 
-  displayedColumns: string[] = ['id', 'courseName', 'firstName', 'actions'];
+  displayedColumns: string[] = [
+    'id',
+    'firstName',
+    'courseName',
+    'description',
+    'startDate',
+    'endDate',
+    'actions',
+  ];
 
   enrollments: Enrollment[] = [];
 
@@ -29,7 +37,11 @@ export class EnrollmentsComponent implements OnDestroy {
 
   desctoyed$ = new Subject();
 
-  constructor(private store: Store, private MatDialog: MatDialog) {
+  constructor(
+    private store: Store,
+    private MatDialog: MatDialog,
+    private enrollmentsService: EnrollmentsService
+  ) {
     //this.enrollments$ = this.store.select(selectEnrollments);
 
     this.store
@@ -52,5 +64,9 @@ export class EnrollmentsComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.desctoyed$.next(true);
     this.desctoyed$.complete();
+  }
+
+  onDeleteEnrollment(id: string): void {
+    this.store.dispatch(EnrollmentsActions.deleteEnrollment({ id }));
   }
 }
